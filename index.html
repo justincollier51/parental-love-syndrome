@@ -1357,7 +1357,16 @@ body[data-v="uds"] > section:nth-of-type(odd):not(.hero) { background: url("data
 @media (min-width:1100px){.sbC .head{margin-bottom:22px!important;position:relative}.sbC .head::before{content:"";position:absolute;left:-30%;right:-30%;top:-40%;bottom:-40%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(5,5,5,.75),rgba(5,5,5,0) 100%)}.sbC .head .ttl{filter:drop-shadow(0 2px 10px rgba(0,0,0,.85))}}/* Larger episode and book pieces; they grow outward, the gap still fits the centre-ice circle */
 @media (min-width:1280px) and (max-width:1999px){.sbC .pair .card .art{width:clamp(240px,14vw,270px)!important}.sbC .card .ttl{font-size:clamp(40px,2.3vw,44px)!important}.sbC .card .meta{font-size:12px!important}}
 @media (min-width:2000px){.sbC .pair .card .art{width:min(17.5vw,470px)!important}}
-</style>
+/* QA fixes: in-page links stop below the fixed header; comfortable tap targets for footer links on phones and tablets */
+@media (max-width:900px){
+ .site-footer .foot-col a{display:block;padding:12px 0;min-height:44px;box-sizing:border-box}
+ .site-footer .foot-logo{display:inline-flex;align-items:center;min-height:44px}
+ .site-footer .foot-top{display:inline-flex;align-items:center;min-height:44px;padding:0 4px}
+}@media (max-width:900px){.nav .nav-logo{display:inline-flex;align-items:center;min-height:44px}}
+/* QA fixes 2: phone platform buttons fit on one row; honours stack on small laptops/tablet landscape where three columns get cramped */
+@media (max-width:480px){.hero-platforms,.cta-platforms{flex-wrap:nowrap!important;gap:6px!important;justify-content:center!important}.hero-platforms .platform-btn,.cta-platforms .platform-btn{font-size:10px!important;padding:11px 9px!important;letter-spacing:.1em!important;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center}.hero-platforms .platform-btn svg,.cta-platforms .platform-btn svg{width:11px;height:11px}}
+@media (max-width:359px){.hero-platforms,.cta-platforms{flex-wrap:wrap!important}}
+@media (min-width:901px) and (max-width:1279px){.about-honours{grid-template-columns:1fr!important;display:grid!important;gap:14px!important}.about-honours li{border-left:0!important;padding-left:0!important;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}}</style>
 
 <script>if (document.body) document.body.setAttribute('data-v','uds');</script>
 <nav class="nav" aria-label="Main">
@@ -1381,7 +1390,7 @@ body[data-v="uds"] > section:nth-of-type(odd):not(.hero) { background: url("data
   </button>
   <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#topics">Topics</a></li>
+    <li><a href="#story">Story</a></li>
     <li><a href="#partners">Partners</a></li>
     <li><a href="#listen">Listen</a></li>
   </ul>
@@ -1759,6 +1768,13 @@ body[data-v="uds"] > section:nth-of-type(odd):not(.hero) { background: url("data
   }
   place(); window.addEventListener('resize', place); window.addEventListener('load', place);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);})();
+</script><script>
+(function () {
+  /* keep in-page jumps (menu, footer links) clear of the fixed header */
+  var nav = document.querySelector('.nav'); if (!nav) return;
+  function set() { document.documentElement.style.scrollPaddingTop = (Math.round(nav.getBoundingClientRect().height) + 8) + 'px'; }
+  set(); window.addEventListener('resize', set); window.addEventListener('load', set);
+})();
 </script>
 <script>document.body.setAttribute('data-v','uds');</script>
 
